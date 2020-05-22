@@ -1,0 +1,134 @@
+openapi: 3.0.1
+info:
+  title: ABM de Usuarios
+  description: ''
+  version: 1.0.0
+tags:
+- name: Usuarios
+  description: Usuarios
+paths:
+  /usuarios:
+    get:
+      tags:
+      - Usuarios
+      summary: Todos los usuario
+      operationId: obtenerUsuarios
+      responses:
+        201:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        405:
+          description: Input invalido
+          content: {}
+      x-codegen-request-body-name: body
+    post:
+      tags:
+      - Usuarios
+      summary: Crear usuario
+      operationId: crearUsuario
+      requestBody:
+        description: Usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        201:
+          description: OK
+          content: {}
+        405:
+          description: Input invalido
+          content: {}
+      x-codegen-request-body-name: body
+  /usuarios/{username}:
+    get:
+      tags:
+      - Usuarios
+      summary: Obtener usuario por username
+      operationId: obtenerUsuarioByUsername
+      parameters: 
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        404:
+          description: Not found
+          content: {}
+      x-codegen-request-body-name: body
+    patch:
+      tags:
+      - Usuarios
+      summary: Actualizar usuario por username
+      operationId: actualizarUsuarioByUsername
+      parameters: 
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+      requestBody:
+        description: Usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        404:
+          description: Not found
+          content: {}
+      x-codegen-request-body-name: body
+    delete:
+      tags:
+      - Usuarios
+      summary: Eliminar usuario por username
+      operationId: eliminarUsuarioByUsername
+      parameters: 
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: OK
+        404:
+          description: Not found
+          content: {}
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        documento:
+          type: string
+        username:
+          type: string
+        nombres:
+          type: string
+        apellidos:
+          type: string
+        genero:
+          type: 'string'
+        fechaNacimiento:
+          type: string
