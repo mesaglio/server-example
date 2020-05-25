@@ -1,1 +1,4 @@
-Just do it `go run main.go`
+Just do it:
+```
+$ go run main.go
+```
