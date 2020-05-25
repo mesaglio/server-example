@@ -1,1 +1,4 @@
-Just do it `npm install && node index.js`
+Just do it:
+```
+$ npm install && node index.js
+```
