@@ -8,6 +8,23 @@ tags:
 - name: Usuarios
   description: Usuarios
 paths:
+  /ping:
+    get:
+      tags:
+      - Status
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Pong
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Status
   /usuarios:
     get:
       tags:
