@@ -10,7 +10,7 @@ tags:
 paths:
   /ping:
     get:
-      tags: 
+      tags:
       - Status
       summary: ping
       operationId: ping
@@ -21,7 +21,10 @@ paths:
             application/json:
               schema:
                 type: string
-                example: "Pong"
+                example: Pong
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Status
   /usuarios:
     get:
       tags:
