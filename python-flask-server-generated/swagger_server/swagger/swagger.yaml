@@ -8,6 +8,24 @@ tags:
 - name: Usuarios
   description: Usuarios
 paths:
+  /ping:
+    get:
+      tags:
+      - Status
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Pong
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Status
+      x-openapi-router-controller: swagger_server.controllers.status_controller
   /usuarios:
     get:
       tags:
@@ -28,6 +46,7 @@ paths:
           description: Input invalido
           content: {}
       x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
       x-openapi-router-controller: swagger_server.controllers.usuarios_controller
     post:
       tags:
@@ -49,6 +68,7 @@ paths:
           description: Input invalido
           content: {}
       x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
       x-openapi-router-controller: swagger_server.controllers.usuarios_controller
   /usuarios/{username}:
     get:
@@ -75,6 +95,7 @@ paths:
           description: Not found
           content: {}
       x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
       x-openapi-router-controller: swagger_server.controllers.usuarios_controller
     delete:
       tags:
@@ -95,6 +116,7 @@ paths:
         "404":
           description: Not found
           content: {}
+      x-swagger-router-controller: Usuarios
       x-openapi-router-controller: swagger_server.controllers.usuarios_controller
     patch:
       tags:
@@ -127,6 +149,7 @@ paths:
           description: Not found
           content: {}
       x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
       x-openapi-router-controller: swagger_server.controllers.usuarios_controller
 components:
   schemas:
