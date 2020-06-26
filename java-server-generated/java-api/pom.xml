@@ -47,6 +47,21 @@
 					</execution>
 				</executions>
 			</plugin> <!-- end Jacoco -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>usuarios.api.JavaServerApi</mainClass>
+					<layout>JAR</layout>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -136,4 +151,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>
