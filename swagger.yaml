@@ -1,0 +1,171 @@
+openapi: 3.0.1
+info:
+  title: ABM de Usuarios
+  version: 1.0.0
+servers:
+- url: /
+tags:
+- name: Usuarios
+  description: Usuarios
+paths:
+  /ping:
+    get:
+      tags:
+      - Status
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: string
+                example: Pong
+                x-content-type: application/json
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Status
+  /usuarios:
+    get:
+      tags:
+      - Usuarios
+      summary: Todos los usuario
+      operationId: obtenerUsuarios
+      responses:
+        "201":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+                x-content-type: application/json
+        "405":
+          description: Input invalido
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+    post:
+      tags:
+      - Usuarios
+      summary: Crear usuario
+      operationId: crearUsuario
+      requestBody:
+        description: Usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        "201":
+          description: OK
+          content: {}
+        "405":
+          description: Input invalido
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+  /usuarios/{username}:
+    get:
+      tags:
+      - Usuarios
+      summary: Obtener usuario por username
+      operationId: obtenerUsuarioByUsername
+      parameters:
+      - name: username
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        "404":
+          description: Not found
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+    delete:
+      tags:
+      - Usuarios
+      summary: Eliminar usuario por username
+      operationId: eliminarUsuarioByUsername
+      parameters:
+      - name: username
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not found
+          content: {}
+      x-swagger-router-controller: Usuarios
+    patch:
+      tags:
+      - Usuarios
+      summary: Actualizar usuario por username
+      operationId: actualizarUsuarioByUsername
+      parameters:
+      - name: username
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: Usuario
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Usuario'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        "404":
+          description: Not found
+          content: {}
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        documento:
+          type: string
+        username:
+          type: string
+        nombres:
+          type: string
+        apellidos:
+          type: string
+        genero:
+          type: string
+        fechaNacimiento:
+          type: string
+      example:
+        apellidos: apellidos
+        fechaNacimiento: fechaNacimiento
+        genero: genero
+        documento: documento
+        username: username
+        nombres: nombres
