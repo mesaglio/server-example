@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  title: "ABM de Usuarios"
+  version: 1.0.0
+host: "localhost:8080"
+basePath: "/"
+consumes: ["application/json"]
+produces: ["application/json"]
+paths:
+  /ping:
+    get:
+      tags:
+      - Status
+      summary: ping
+      operationId: ping
+      responses:
+        "200":
+          description: Ok
+          schema:
+            type: string
+            example: Pong
+      x-swagger-router-controller: Status
+  /usuarios:
+    get:
+      tags:
+      - Usuarios
+      summary: Todos los usuario
+      operationId: obtenerUsuarios
+      responses:
+        "201":
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Usuario'
+        "405":
+          description: Input invalido
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+    post:
+      tags:
+      - Usuarios
+      summary: Crear usuario
+      operationId: crearUsuario
+      parameters:
+      - in: body
+        name: body
+        description: Usuario
+        required: true
+        schema:
+          $ref: '#/definitions/Usuario'
+      responses:
+        "201":
+          description: OK
+        "405":
+          description: Input invalido
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+  /usuarios/{username}:
+    get:
+      tags:
+      - Usuarios
+      summary: Obtener usuario por username
+      operationId: obtenerUsuarioByUsername
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Usuario'
+        "404":
+          description: Not found
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+    delete:
+      tags:
+      - Usuarios
+      summary: Eliminar usuario por username
+      operationId: eliminarUsuarioByUsername
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+        "404":
+          description: Not found
+      x-swagger-router-controller: Usuarios
+    patch:
+      tags:
+      - Usuarios
+      summary: Actualizar usuario por username
+      operationId: actualizarUsuarioByUsername
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: string
+      - in: body
+        name: user
+        description: Usuario
+        required: true
+        schema:
+          $ref: '#/definitions/Usuario'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/Usuario'
+        "404":
+          description: Not found
+      x-codegen-request-body-name: body
+      x-swagger-router-controller: Usuarios
+definitions:
+  Usuario:
+    type: object
+    properties:
+      documento:
+        type: string
+      username:
+        type: string
+      nombres:
+        type: string
+      apellidos:
+        type: string
+      genero:
+        type: string
+      fechaNacimiento:
+        type: string
+    example:
+      apellidos: apellidos
+      fechaNacimiento: fechaNacimiento
+      genero: genero
+      documento: documento
+      username: username
+      nombres: nombres
