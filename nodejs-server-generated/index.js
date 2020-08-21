@@ -15,6 +15,14 @@ var expressAppConfig = oas3Tools.expressAppConfig(path.join(__dirname, 'api/open
 expressAppConfig.addValidator();
 var app = expressAppConfig.getApp();
 
+// redirect middleware
+app.use((req, res, next) => {
+    if (req.path == '/')
+        res.redirect('/ping')
+    else
+        next()
+})
+
 // Initialize the Swagger middleware
 http.createServer(app).listen(serverPort, function () {
     console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
