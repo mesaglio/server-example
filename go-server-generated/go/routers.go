@@ -9,7 +9,6 @@
  package swagger
 
  import (
-	 "fmt"
 	 "net/http"
 	 "strings"
  
@@ -42,16 +41,17 @@
 	 return router
  }
  
- func Index(w http.ResponseWriter, r *http.Request) {
-	 fmt.Fprintf(w, "Hello World!")
+ func RedirectPing(w http.ResponseWriter, r *http.Request) {
+	 http.Redirect(w,r,"/ping",http.StatusSeeOther)
  }
+
  
  var routes = Routes{
 	 Route{
 		 "Index",
 		 "GET",
 		 "/",
-		 Index,
+		 RedirectPing,
 	 },
  
 	 Route{
