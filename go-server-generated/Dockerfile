@@ -4,11 +4,11 @@ RUN go get github.com/gorilla/mux
 
 WORKDIR /app
 
-COPY main.go .
+COPY src/main.go .
 
 WORKDIR /app/go
 
-COPY go/ .
+COPY src/go .
 
 ENTRYPOINT go run /app/main.go
 

@@ -1,0 +1,16 @@
+lenguage: go
+
+go:
+  - 1.14.x
+
+branches:
+  only:
+    - master
+
+jobs:
+  before_script:
+    - cd go-server-generated
+    - export GOPATH="${TRAVIS_BUILD_DIR}/swagger-server-example/_workspace:$GOPATH"
+    - export PATH="${TRAVIS_BUILD_DIR}/swagger-server-example/_workspace/bin:$PATH"
+  script:
+    - go test ./...
