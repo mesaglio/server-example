@@ -8,6 +8,10 @@ import {
     createUser
 } from "../controllers/userController.ts"
 
+import {
+    ping
+} from "../controllers/statusController.ts"
+
 const router = new Router();
 
 router
@@ -15,6 +19,7 @@ router
     .get("/usuarios", getAllUsers)
     .get("/usuarios/:username", getUserByUsername)
     .delete("/usuarios/:username", deleteUser)
-    .patch("/usuarios/:username", updateUser);
+    .patch("/usuarios/:username", updateUser)
+    .get("/ping", ping);
 
 export default router;

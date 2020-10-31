@@ -1,4 +1,5 @@
 import { User } from "./../models/user.ts";
+
 let users: Array<User> = [];
 
 const getAllUsers = ({ response }: { response: any }) => {
