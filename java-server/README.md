@@ -1,3 +1,5 @@
+Requirements: `java 8`
+
 With docker:
 ```
 $ docker build -t java-server .
