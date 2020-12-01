@@ -1,10 +1,8 @@
 package controllers
 
 import (
-	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"golang-test/api/src/models"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -19,12 +17,13 @@ func GetUsers(c *gin.Context){
 }
 
 func AddUser(c *gin.Context){
-	user, bodyerr := getUserFromBody(c)
-	if bodyerr != nil {
-		c.Status(http.StatusBadRequest, )
+	user := getUserFromBody(c)
+	if user != nil {
+		users = append(users, user)
+		c.Status(http.StatusCreated)
+	} else {
+		c.Status(http.StatusBadRequest)
 	}
-	users = append(users, &user)
-	c.Status(http.StatusCreated)
 }
 
 func GetUserByUsername(c *gin.Context){
@@ -45,10 +44,10 @@ func DeleteUserByUsername(c *gin.Context) {
 
 func UpdateUserByUsername(c *gin.Context){
 	username := c.Param("username")
-	user,err := getUserFromBody(c)
-	if username != "" || err != nil {
+	user := getUserFromBody(c)
+	if username != "" || user != nil {
 		deleteUserByUsername(username)
-		users = append(users,&user)
+		users = append(users,user)
 		c.JSON(http.StatusOK,user)
 	} else {
 		c.Status(http.StatusBadRequest)
@@ -82,12 +81,11 @@ func getUserByUsername(username string) *models.User{
 	return nil
 }
 
-func getUserFromBody(c *gin.Context) (models.User, error) {
-	body, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		c.Status(http.StatusBadRequest)
-	}
+func getUserFromBody(c *gin.Context) *models.User {
 	user := models.User{}
-	bodyerr := json.Unmarshal(body, &user)
-	return user, bodyerr
+	err := c.Bind(&user)
+	if err != nil {
+		return nil
+	}
+	return &user
 }
