@@ -13,5 +13,6 @@ def map_routes(_api):
 if __name__ == '__main__':
     api = falcon.API()
     map_routes(api)
+    print("Listening ...")
     httpd = simple_server.make_server('0.0.0.0', 8000, api)
     httpd.serve_forever()
