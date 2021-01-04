@@ -1,6 +1,6 @@
 # servers-examples
 
-La finalidad de este repositorio es implementar [esta api](https://github.com/mesaglio/server-example/blob/master/swagger/swagger-3.yml), en distintos lenguajes.
+La finalidad de este repositorio es implementar [esta api](https://github.com/mesaglio/server-example/blob/master/swagger/swagger-3.yml), en distintos lenguajes/frameworks.
 
 | Lenguaje/Framwork     | Documentation                                       | Example                                                                      |
 |-----------------------|-----------------------------------------------------|------------------------------------------------------------------------------|
