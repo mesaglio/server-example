@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from fastapi import APIRouter, Response
 
-from model.usuario import Usuario
+from src.model.usuario import Usuario
 
 users: List[Usuario] = []
 
