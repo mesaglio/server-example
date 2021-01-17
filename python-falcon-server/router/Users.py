@@ -25,10 +25,7 @@ class Users:
             res.body = json.dumps(self.users, default=lambda o: o.encode(), indent=4)
 
     def on_delete(self, req, res, username=None):
-        if not username:
-            res.status = falcon.HTTP_200
-        else:
-            self.remove_user_by_username(username)
+        self.remove_user_by_username(username)
 
     def on_patch(self, req, res, username=None):
         user = req.media
@@ -46,6 +43,8 @@ class Users:
         return None
 
     def remove_user_by_username(self, username: str):
+        if username is None:
+            return
         for user in self.users:
             if user.username == username:
                 self.users.remove(user)
