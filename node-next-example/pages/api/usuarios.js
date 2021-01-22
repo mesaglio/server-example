@@ -45,6 +45,6 @@ function getUserFromBody(req) {
 module.exports = {
     default: handler,
     usuarios: usuarios,
-    haveAllProps: haveAllProps
+    haveAllProps: haveAllProps,
+    getUserFromBody: getUserFromBody
 }
-module.exports.getUserFromBody = getUserFromBody

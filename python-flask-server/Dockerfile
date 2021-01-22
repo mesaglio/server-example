@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3","-m","swagger_server"]
+ENTRYPOINT ["python3","__main__.py"]
