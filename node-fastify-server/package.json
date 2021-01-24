@@ -1,0 +1,28 @@
+{
+  "name": "node-fastif-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "fastify": "^3.0.0",
+    "fastify-autoload": "^3.3.1",
+    "fastify-cli": "^2.7.0",
+    "fastify-plugin": "^3.0.0",
+    "http-errors": "^1.8.0",
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "tap": "^14.11.0"
+  },
+  "scripts": {
+    "test": "tap test/**/*.test.js",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -w -l info -P app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
