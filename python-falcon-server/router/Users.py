@@ -12,7 +12,7 @@ class Users:
             res.status = falcon.HTTP_400
         else:
             self.users.append(self.body_to_user(user))
-            res.status = falcon.HTTP_201
+            res.status = falcon.HTTP_200
 
     def on_get(self, req, res, username=None):
         if username:
@@ -29,7 +29,7 @@ class Users:
 
     def on_patch(self, req, res, username=None):
         user = req.media
-        if not username:
+        if not username or self.find_user_by_username(username) is None:
             res.status = falcon.HTTP_404
         elif not Usuario.validate_dict(user):
             res.status = falcon.HTTP_400

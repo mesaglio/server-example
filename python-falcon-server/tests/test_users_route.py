@@ -22,7 +22,7 @@ def test_get_empty_users(client: TestClient):
 
 def test_create_user(client: TestClient, user: dict):
     response = client.simulate_post('/usuarios', json=user)
-    assert response.status_code == 201
+    assert response.status_code == 200
 
 
 def test_create_user_bad_request(client: TestClient, user: dict):
@@ -34,7 +34,7 @@ def test_create_user_bad_request(client: TestClient, user: dict):
 
 def test_get_created_user(client: TestClient, user: dict):
     response = client.simulate_post('/usuarios', json=user)
-    assert response.status_code == 201
+    assert response.status_code == 200
     response2 = client.simulate_get(f"/usuarios/{user.get('username')}")
     assert response2.status_code == 200
     assert user.get('username').encode() in response2.content
