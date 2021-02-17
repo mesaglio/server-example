@@ -3,7 +3,7 @@ import pytest
 import json
 import random
 
-port = 8000
+port = 8080
 base_url = f'http://localhost:{port}'
 users_url = base_url + '/usuarios'
 users = [

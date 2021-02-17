@@ -39,6 +39,7 @@ func CrearUsuario(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	var usuario Usuario
 	err := json.NewDecoder(r.Body).Decode(&usuario)
+	fmt.Println(usuario)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
@@ -78,4 +79,8 @@ func ObtenerUsuarios(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	fmt.Fprintf(w, printUsuarios())
+}
+
+func usuario_vacio(usuario *Usuario) bool{
+	return len(usuario.Username) == 0 || len(usuario.Apellidos) == 0
 }

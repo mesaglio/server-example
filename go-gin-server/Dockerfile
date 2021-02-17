@@ -6,6 +6,6 @@ COPY . .
 
 RUN go mod download
 
-ENTRYPOINT go run src/main.go
+CMD go run src/main.go
 
 EXPOSE 8080

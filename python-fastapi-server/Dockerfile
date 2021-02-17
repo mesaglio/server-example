@@ -4,4 +4,4 @@ COPY . .
 
 RUN ["pip", "install", "-r", "requirements.txt"]
 
-ENTRYPOINT ["python3","src/main.py"]
+CMD ["python3","src/main.py"]

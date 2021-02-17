@@ -19,5 +19,10 @@ func main() {
 
 	router := sw.NewRouter()
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	s := &http.Server{
+		Addr: "0.0.0.0:8080",
+		Handler: router,
+	}
+
+	log.Fatal(s.ListenAndServe())
 }

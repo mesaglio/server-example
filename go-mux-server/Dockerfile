@@ -1,6 +1,6 @@
-FROM golang
+FROM golang:1.15-alpine
 
-RUN go get github.com/gorilla/mux
+RUN apk add git && go get github.com/gorilla/mux
 
 WORKDIR /app
 
@@ -10,6 +10,6 @@ WORKDIR /app/go
 
 COPY src/go .
 
-ENTRYPOINT go run /app/main.go
+CMD go run /app/main.go
 
 EXPOSE 8080

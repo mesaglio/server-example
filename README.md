@@ -18,3 +18,4 @@ Para testear por consola: `pytest api_test.py`
 | Python 3 with Falcon  | https://falconframework.org/                        | https://github.com/mesaglio/server-example/tree/master/python-falcon-server  |
 | Python 3 with FastAPI | https://fastapi.tiangolo.com/                       | https://github.com/mesaglio/server-example/tree/master/python-fastapi-server |
 | Python 3 with Flask   | https://flask.palletsprojects.com/en/1.1.x/         | https://github.com/mesaglio/server-example/tree/master/python-flask-server   |
+| Ruby Sinatra   | http://sinatrarb.com/         | https://github.com/mesaglio/server-example/tree/master/ruby-sinatra-server   |
