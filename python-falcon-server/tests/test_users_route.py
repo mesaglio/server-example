@@ -5,7 +5,7 @@ from falcon.testing import TestClient, Result
 @pytest.fixture
 def user() -> dict:
     return {
-        "documento": "39466014",
+        "documento": "39125623",
         "username": "juanmesaglio",
         "nombres": "juan",
         "apellidos": "mesaglio",
