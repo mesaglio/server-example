@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user;
+option go_package="cmd/userpb";
+
+message User {
+    string documento = 1;
+    string username = 2;
+    string nombres = 3;
+    string apellidos = 4;
+    string genero = 5;
+    string fechaNacimiento = 6;
+}
+
+message UserRequest {
+    User user = 1;
+}
+
+message UserResponse {
+    string response = 1;
+}
+
+service UserService {
+    rpc User(UserRequest) returns (UserResponse) {};
+}
