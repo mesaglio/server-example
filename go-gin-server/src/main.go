@@ -1,16 +1,20 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"golang-test/api/src/controllers"
+
+	"github.com/gin-contrib/pprof"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	r := gin.Default()
+
 	ping := r.Group("/ping")
 	{
 		ping.GET("", controllers.Ping)
 	}
+	r.GET("/meli", controllers.Meli)
 
 	users := r.Group("/usuarios")
 	{
@@ -20,6 +24,6 @@ func main() {
 		users.DELETE(":username", controllers.DeleteUserByUsername)
 		users.PATCH(":username", controllers.UpdateUserByUsername)
 	}
-
+	pprof.Register(r)
 	r.Run(":8080")
 }

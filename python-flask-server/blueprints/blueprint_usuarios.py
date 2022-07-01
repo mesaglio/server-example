@@ -1,48 +1,51 @@
 from models.usuario import Usuario
 from flask import request, Blueprint, jsonify
 
+from utils.decoretaors import log_enpoint_information
+
 usuarios = []
 
 usuarios_blueprint = Blueprint("usuarios", __name__)
 
 
-@usuarios_blueprint.route('/', methods=['POST'])
+@usuarios_blueprint.route("/", methods=["POST"])
 def crear_usuario():
     try:
         body = Usuario(request.json)
         usuarios.append(body)
-        return '', 201
+        return "", 201
     except Exception as e:
-        return '', 400
+        return "", 400
 
 
-@usuarios_blueprint.route('/', methods=['GET'])
+@usuarios_blueprint.route("/", methods=["GET"])
+@log_enpoint_information
 def obtener_usuarios():
     return jsonify([o.__dict__ for o in usuarios]), 200
 
 
-@usuarios_blueprint.route('/<username>', methods=['GET'])
+@usuarios_blueprint.route("/<username>", methods=["GET"])
 def obtener_usuario_by_username(username):
     index = get_index_of_user(username)
     if index != -1:
         return jsonify(usuarios[index].__dict__), 200
-    return '', 404
+    return "", 404
 
 
-@usuarios_blueprint.route('/<username>', methods=['PATCH'])
+@usuarios_blueprint.route("/<username>", methods=["PATCH"])
 def actualizar_usuario_by_username(username):
     body = Usuario(request.json)
     if get_index_of_user(username) != -1:
         delete_user_by_username(username)
         usuarios.append(body)
-        return '', 200
-    return '', 404
+        return "", 200
+    return "", 404
 
 
-@usuarios_blueprint.route('/<username>', methods=['DELETE'])
+@usuarios_blueprint.route("/<username>", methods=["DELETE"])
 def eliminar_usuario_by_username(username):
     delete_user_by_username(username)
-    return '', 200
+    return "", 200
 
 
 # AUXILIAR
